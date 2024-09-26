@@ -7,55 +7,24 @@ from .utils import __version__ as bot_version
 from pyrogram import Client, filters, enums, __version__
 from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
-from pyrogram.errors import ChatActionCancelled
-
-# ... other imports (database, translations)
-
-async def start(bot: Client, message):
-    user = message.from_user
-
-    # Check if user exists
-    if not await db.is_user_exist(user.id):
-        await db.add_user(user.id)
-        # Set initial password to "anidbs" during user creation (optional)
-        await db.set_password(user.id, "anidbsmyservice")  # Replace "anidbs" with your desired default password
-
-    # Check if password is set (or if user is new)
-    if not await db.get_password(user.id):
-        # No password set, request password
-        await message.chat.send_action("typing")
-        try:
-            password = await bot.ask(
-                chat_id=message.chat.id,
-                text=" Enter your password to access the bot:",
-                hide_keyboard=True,
-            )
-            await message.chat.send_action("cancel")
-
-            # Validate password (assuming password is initially "anidbs")
-            if password.text == "anidbs":
-                await db.set_password(user.id, password.text)  # Update password in database
-                await message.reply_text(
-                    Translation.START_TXT.format(user.mention),
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [InlineKeyboardButton("♦️ Help", callback_data="help")],
-                            [
-                                InlineKeyboardButton(
-                                    " Update Channel", url="https://t.me/animedualaudiozippercartoonist"
-                                ),
-                                InlineKeyboardButton("♻️ Suppot Group", url="https://t.me/AnimeColony"),
-                            ],
-                            [InlineKeyboardButton(" Source code", url="https://t.me/animedualaudiozippercartoonist")],
-                        ]
-                    ),
-                )
-            else:
-                await message.reply_text("❌ Incorrect password. Please try again.")
-        except ChatActionCancelled:
-            # User cancelled the password request
-            pass
-
+@Client.on_message(filters.command("start"))
+async def start(bot, message):
+   user = message.from_user
+   if not await db.is_user_exist(user.id):
+      await db.add_user(user.id)
+   await message.reply_text(
+        Translation.START_TXT.format(user.mention),
+        reply_markup=InlineKeyboardMarkup(
+             [[
+               InlineKeyboardButton("♦️ Help", callback_data = "help")
+             ],[
+               InlineKeyboardButton('📢 Update Channel', url='https://t.me/GreyMatter_Bots'),
+               InlineKeyboardButton('♻️ Suppot Group', url='https://t.me/GreyMatters_Bots_Discussion')
+             ],[
+                InlineKeyboardButton('📃 Source code', url='https://github.com/Greymattersbot/md-renamebot')
+             ]]
+   ))
+    
 @Client.on_message(filters.command("start"))
 async def start_handler(bot: Client, message):
     await start(bot, message)
