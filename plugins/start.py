@@ -7,7 +7,6 @@ from .utils import __version__ as bot_version
 from pyrogram import Client, filters, enums, __version__
 from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
-from pyrogram import Client, filters, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import ChatActionCancelled
 
 # ... other imports (database, translations)
