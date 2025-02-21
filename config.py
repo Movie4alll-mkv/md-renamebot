@@ -8,4 +8,4 @@ class Config(object):
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "5225692027:AAFwugDiuhZjwQKUDjWbXhLZlhzzFMXAHJo")
     OWNER_ID = int(os.environ.get("OWNER_ID", 1430593323))
     AUTH_CHANNEL = os.environ.get("AUTH_CHANNEL", None)
-    DATABASE_URI = os.environ.get("DATABASE_URI", None)
+    DATABASE_URI = os.environ.get("DATABASE_URI", "mongodb+srv://nhere118:jSsmgEs1uEqnlbrZ@cluster0.rdkih.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
