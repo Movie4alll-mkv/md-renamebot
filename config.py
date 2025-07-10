@@ -5,7 +5,7 @@ class Config(object):
     DOWNLOAD_LOCATION = "./DOWNLOADS" 
     API_ID = int(os.environ.get("API_ID", 6534707))
     API_HASH = os.environ.get("API_HASH" ,"4bcc61d959a9f403b2f20149cbbe627a")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "5225692027:AAFwugDiuhZjwQKUDjWbXhLZlhzzFMXAHJo")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "5225692027:AAFn0oKGR8wn7vA1VPygAOrnvh93zu3pcG0")
     OWNER_ID = int(os.environ.get("OWNER_ID", 1430593323))
     AUTH_CHANNEL = os.environ.get("AUTH_CHANNEL", None)
     DATABASE_URI = os.environ.get("DATABASE_URI", "mongodb+srv://nhere118:jSsmgEs1uEqnlbrZ@cluster0.rdkih.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
